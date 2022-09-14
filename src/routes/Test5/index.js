@@ -1,8 +1,10 @@
 
 import { cssWrapper } from './style';
+import { useState, useContext } from 'react';
 
 import Comp1 from "./Comp1";
 import Comp3 from "./Comp3";
+import { Test5Context } from '../../context/test5';
 
 const question = (
   <ul>
@@ -26,18 +28,42 @@ const question = (
 );
 
 const Test5 = () => {
+  const [checked, setChecked] = useState(false)
+  const [latestValue, setLatestValue] = useState('mynumber')
+  const { mynumber, setMynumber, overWriteValue, setOverWriteValue } = useContext(Test5Context)
+
+  const renderOddEven = (value) => {
+    let currentNumber = 'EVEN'
+    if (value % 2 !== 0 ) {
+      currentNumber = 'ODD'
+    }
+    return currentNumber
+  }
+
   return(
     <div>
       {question}
-      <button id="numbermin" type="button">-</button>
-      <input id="mynumber" type="text" placeholder="input mynumber"/>
-      <button id="numberplus" type="button">+</button>
+      <button id="numbermin" type="button" onClick={() => setMynumber(prev => prev - 1)}>-</button>
+      <input id="mynumber" type="number" placeholder="input mynumber" value={mynumber} onChange={e => {
+        setLatestValue('mynumber')
+        setMynumber(e.target.value)
+      }}/>
+      <button id="numberplus" type="button" onClick={() => setMynumber(prev => prev + 1)}>+</button>
       <br/>
       <br/>
       <div className={cssWrapper}>
-        The inputted value is [ODD / EVEN]*
+        The inputted value is {renderOddEven(mynumber)}*
       </div>
-      <Comp1 />
+      <Comp1 
+        value={overWriteValue} 
+        setValue={(e) => {
+          setOverWriteValue(e.target.value)
+          setLatestValue('mynumber1')
+        }} 
+        mynumber={mynumber}
+        latestValue={latestValue}
+        checked={checked}
+        setChecked={setChecked}/>
       <Comp3 />
     </div>
   )

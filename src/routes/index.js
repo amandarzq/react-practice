@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes as Switch, Route, Link } from "react-router-dom";
+import { MainProvider } from "../context";
 import Layout from "../components/Layout";
 import Test1 from "./Test1";
 import Test2 from "./Test2";
@@ -31,13 +32,14 @@ function Routes() {
   });
 
   return (
-    
+    <MainProvider>
       <Router>
         <Layout>
           {renderNav}
           <Switch>{renderRoutes}</Switch>
         </Layout>
       </Router>
+    </MainProvider>
   );
 }
 

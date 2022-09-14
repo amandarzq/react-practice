@@ -1,9 +1,15 @@
 import { css } from 'react-emotion';
 
+export const videoContainer = css({
+  overflow: 'hidden',
+  borderRadius: '10px',
+  aspectRatio: 4 / 3,
+  width: '100%',
+  height: '100%'
+})
+
 export const cssVideo = css({
-  display: 'block',
   width: "100%",
-  height: 600,
-  objectFit: 'cover',
-  marginTop: 16,
+  objectFit: 'contain',
+  aspectRatio: 4 / 3,
 });

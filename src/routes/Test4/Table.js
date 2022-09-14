@@ -1,6 +1,4 @@
-// import DATA from "./_data";
-
-const Table = () => {
+const Table = ({ data = [] }) => {
   return (
     <table>
       <thead>
@@ -10,6 +8,20 @@ const Table = () => {
           <th>Address</th>
         </tr>
       </thead>
+      <tbody>
+        {
+          data?.map((item, idx) => {
+            const { name, age, address } = item || {};
+            return (
+              <tr key={idx}>
+                <td>{name}</td>
+                <td>{age}</td>
+                <td>{address}</td>
+              </tr>
+            )
+          })
+        }
+      </tbody>
     </table>
   )
 }

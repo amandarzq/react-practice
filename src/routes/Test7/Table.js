@@ -1,6 +1,9 @@
-import DATA from "./_data";
+import { useContext } from "react";
+import { Test7Context } from "../../context/test7";
+// import DATA from "./_data";
 
 const Table = () => {
+  const { filteredData } = useContext(Test7Context)
   return (
     <table>
       <thead>
@@ -11,7 +14,7 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {DATA.map((eachrow, idx) => (
+        {filteredData.map((eachrow, idx) => (
           <tr key={idx}>
             <td>{eachrow.name}</td>
             <td>{eachrow.age}</td>

@@ -1,8 +1,8 @@
 
-const Input = () => {
+const Input = ({ onChange, onSubmit }) => {
   return (
-    <form>
-      <input type="text" placeholder="search" />
+    <form onSubmit={onSubmit}>
+      <input type="text" placeholder="search" onChange={onChange} />
       <button type="submit">🔍</button>
     </form>
   )
